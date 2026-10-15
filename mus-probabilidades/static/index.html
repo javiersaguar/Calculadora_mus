@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Mus Probabilidades</title>
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Calculadora local</p>
+          <h1>Mus Probabilidades</h1>
+        </div>
+        <div class="topbar-actions">
+          <span id="qualityPill" class="status-pill">Sin cálculo</span>
+          <button id="resetButton" class="ghost-button" type="button">Limpiar</button>
+        </div>
+      </header>
+
+      <section class="workspace-grid">
+        <section class="table-zone" aria-label="Mesa de mus">
+          <div class="seat-marker seat-top" id="seat2">Jugador 3</div>
+          <div class="seat-marker seat-left" id="seat1">Jugador 2</div>
+          <div class="seat-marker seat-right" id="seat3">Jugador 4</div>
+          <div class="seat-marker seat-bottom" id="seat0">Jugador 1</div>
+
+          <div class="felt-center">
+            <div class="hand-area">
+              <div class="section-title-row">
+                <h2>Tu mano</h2>
+                <span id="handCount">0/4</span>
+              </div>
+              <div id="selectedHand" class="selected-hand" aria-live="polite"></div>
+            </div>
+
+            <div class="deck-area">
+              <div class="section-title-row">
+                <h2>Baraja</h2>
+                <span>40 cartas</span>
+              </div>
+              <div id="deckGrid" class="deck-grid"></div>
+            </div>
+          </div>
+        </section>
+
+        <aside class="control-zone" aria-label="Configuración">
+          <section class="control-section">
+            <div class="section-title-row">
+              <h2>Mesa</h2>
+              <span>4 jugadores</span>
+            </div>
+            <div class="field-grid two-cols">
+              <label>
+                <span>Soy</span>
+                <select id="playerIndex">
+                  <option value="0">Jugador 1</option>
+                  <option value="1">Jugador 2</option>
+                  <option value="2">Jugador 3</option>
+                  <option value="3">Jugador 4</option>
+                </select>
+              </label>
+              <label>
+                <span>Mano</span>
+                <select id="manoIndex">
+                  <option value="0">Jugador 1</option>
+                  <option value="1">Jugador 2</option>
+                  <option value="2">Jugador 3</option>
+                  <option value="3">Jugador 4</option>
+                </select>
+              </label>
+            </div>
+            <div class="field-grid">
+              <label>
+                <span>Cartas repartidas en la mano</span>
+                <input id="totalDealtCards" type="number" min="16" max="80" placeholder="No lo sé" />
+              </label>
+            </div>
+
+            <div class="toggle-row">
+              <label class="switch-label">
+                <input id="variantToggle" type="checkbox" checked />
+                <span>8 reyes y 8 ases</span>
+              </label>
+              <label class="switch-label">
+                <input id="discardModel" type="checkbox" checked />
+                <span>Modelo realista</span>
+              </label>
+            </div>
+          </section>
+
+          <section class="control-section">
+            <div class="section-title-row">
+              <h2>Lance</h2>
+              <span id="simulationLabel">20000 simulaciones</span>
+            </div>
+            <div id="lanceFilter" class="segmented" role="tablist">
+              <button class="segment active" data-lance="all" type="button">Todo</button>
+              <button class="segment" data-lance="grande" type="button">Grande</button>
+              <button class="segment" data-lance="chica" type="button">Chica</button>
+              <button class="segment" data-lance="pares" type="button">Pares</button>
+              <button class="segment" data-lance="juego" type="button">Juego</button>
+              <button class="segment" data-lance="punto" type="button">Punto</button>
+            </div>
+            <label class="range-field">
+              <span>Precisión</span>
+              <input id="samples" type="range" min="1000" max="60000" step="1000" value="20000" />
+            </label>
+          </section>
+
+          <section class="control-section">
+            <div class="section-title-row">
+              <h2>Información pública</h2>
+              <span>Último descarte opcional</span>
+            </div>
+            <div id="playerRows" class="player-rows"></div>
+          </section>
+
+          <button id="calculateButton" class="primary-button" type="button" disabled>
+            Calcular probabilidades
+          </button>
+          <p id="formMessage" class="form-message" role="status"></p>
+        </aside>
+      </section>
+
+      <section class="results-zone" aria-label="Resultados">
+        <div class="results-header">
+          <div>
+            <p class="eyebrow">Resultado</p>
+            <h2 id="resultsTitle">Selecciona tus 4 cartas</h2>
+          </div>
+          <span id="samplesMeta" class="status-pill subtle">Esperando mano</span>
+        </div>
+        <div id="heroSummary" class="hero-summary"></div>
+        <div id="resultsGrid" class="results-grid"></div>
+        <div id="notesPanel" class="notes-panel"></div>
+      </section>
+    </main>
+
+    <script src="/static/app.js"></script>
+  </body>
+</html>
