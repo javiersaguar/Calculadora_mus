@@ -2,9 +2,17 @@
 
 Calculadora de probabilidades de mus para cuatro jugadores por parejas.
 
-El proyecto se encuentra en [`mus-probabilidades`](mus-probabilidades/).
+Este repositorio conserva las dos implementaciones originales:
 
-## Ejecutar
+| Carpeta | Implementacion | Ejecucion |
+| --- | --- | --- |
+| [`mus-probabilidades`](mus-probabilidades/) | Codex: Python y frontend HTML/JavaScript | Un servidor, puerto 8000 |
+| [`mus_probability`](mus_probability/) | Claude: FastAPI y React/TypeScript | Backend en 8001 y frontend en 5173 |
+
+La version de Claude se creo el 26 de junio de 2026 y se recupero de
+`C:\Users\Javier\mus_probability`. Cada carpeta incluye sus instrucciones.
+
+## Ejecutar la version de Codex
 
 Requiere Python 3.10 o superior. La aplicacion no necesita dependencias externas.
 
@@ -16,7 +24,13 @@ python -m backend.server --port 8000
 
 Abre http://127.0.0.1:8000 en el navegador.
 
-## Pruebas
+## Ejecutar la version de Claude
+
+Consulta la [instalacion y ejecucion](mus_probability/README.md). Requiere Python
+y Node.js con npm. Las dos versiones pueden ejecutarse simultaneamente con sus
+puertos predeterminados.
+
+## Pruebas de la version de Codex
 
 Desde la carpeta `mus-probabilidades`:
 
